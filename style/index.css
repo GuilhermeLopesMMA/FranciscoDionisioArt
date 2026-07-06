@@ -77,8 +77,9 @@ nav a:hover::after{width:100%}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
 .art-tile{background:var(--cobalt-deep);padding:8px;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease;box-shadow:0 6px 22px rgba(19,41,75,.16)}
 .art-tile:hover{transform:translateY(-5px);box-shadow:0 16px 38px rgba(19,41,75,.28)}
-.art-tile-inner{border:1.5px solid var(--gold);background:var(--tile)}
+.art-tile-inner{border:1.5px solid var(--gold);background:var(--tile);overflow:hidden}
 .art-tile svg{display:block;width:100%;height:auto}
+.art-tile-inner img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
 .art-label{background:var(--cobalt-deep);padding:.9rem 1rem;text-align:center;border-top:1.5px solid var(--gold)}
 .art-label strong{display:block;font-family:'Playfair Display',serif;font-weight:500;color:var(--tile);font-size:.92rem;letter-spacing:.06em}
 .art-label em{display:block;color:var(--cobalt-soft);font-size:.72rem;letter-spacing:.08em;margin-top:.2rem}
@@ -110,6 +111,30 @@ nav a:hover::after{width:100%}
 .btn-ghost{background:transparent;color:var(--tile);border:2px solid var(--cobalt-soft)}
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
 footer{background:var(--ink);color:var(--cobalt-soft);padding:1.6rem 2.5rem;text-align:center;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase}
+.lightbox{
+  position:fixed;inset:0;z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(19,41,75,.94);
+  opacity:0;visibility:hidden;
+  transition:opacity .25s ease,visibility .25s ease;
+  overflow:hidden
+}
+.lightbox.active{opacity:1;visibility:visible}
+.lightbox img{
+  max-width:90vw;max-height:88vh;
+  cursor:zoom-in;
+  transition:transform .2s ease;
+  user-select:none
+}
+.lightbox img.zoomed{cursor:grab}
+.lightbox img.panning{cursor:grabbing;transition:none}
+.lightbox-close{
+  position:absolute;top:1.4rem;right:2rem;
+  background:none;border:none;color:var(--tile);
+  font-size:2.6rem;line-height:1;cursor:pointer;
+  transition:color .2s
+}
+.lightbox-close:hover{color:var(--gold)}
 @media(max-width:860px){
   .gallery{grid-template-columns:repeat(2,1fr)}
   .tech-grid{grid-template-columns:repeat(2,1fr)}
